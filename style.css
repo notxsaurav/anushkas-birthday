@@ -15,7 +15,6 @@ body {
   padding: 10px;
 }
 
-/* Page style */
 .page {
   position: absolute;
   width: 100%;
@@ -35,7 +34,7 @@ body {
   pointer-events: all;
 }
 
-/* Transitions */
+/* Page animations */
 .page.fade { animation: fade 1s ease; }
 .page.slide { animation: slide 0.8s ease; }
 .page.zoom { animation: zoom 0.8s ease; }
