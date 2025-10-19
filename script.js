@@ -17,13 +17,14 @@ for(let i=0;i<40;i++){
   document.body.appendChild(sparkle);
 }
 
-// Function to show page with animation
+// Show page with animation
 function showPage(index, animation){
   pages.forEach(p=>p.classList.remove('active','fade','slide','zoom'));
   const page = pages[index];
   page.classList.add('active', animation);
   const text = page.querySelector('.text');
   if(text) setTimeout(()=>text.classList.add('show'),200);
+  if(page.querySelector('.envelope')) page.querySelector('.envelope').classList.add('show');
   currentPage = index;
 }
 
@@ -31,18 +32,20 @@ function showPage(index, animation){
 startBtn.addEventListener('click',()=> showPage(1,'fade') );
 
 // Next buttons
-nextBtns.forEach((btn,i)=>{
+nextBtns.forEach(btn=>{
   btn.addEventListener('click',()=>{
     const nextIndex = currentPage+1;
-    const anims = ['fade','slide','zoom','fade','slide','zoom','fade','slide','zoom'];
-    showPage(nextIndex, anims[currentPage] || 'fade');
+    if(nextIndex < pages.length){
+      const anims = ['fade','slide','zoom','fade','slide','zoom','fade','slide','zoom','fade'];
+      showPage(nextIndex, anims[currentPage] || 'fade');
+    }
   });
 });
 
-// Envelope click for page5
+// Envelope click
 if(envelope){
   envelope.addEventListener('click',()=>{
-    showPage(5,'zoom');
+    showPage(5,'zoom'); // page6: Happy Birthday
     setTimeout(()=>happyBirthday.classList.add('show'),100);
     startConfetti();
     music.volume = 0.05;
